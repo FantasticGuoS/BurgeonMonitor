@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: cn.burgeon.bos.test.HelloTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 3.137 s <<< FAILURE! - in cn.burgeon.bos.test.HelloTests
+getHello(cn.burgeon.bos.test.HelloTests)  Time elapsed: 0.253 s  <<< ERROR!
+java.lang.ClassCastException: org.springframework.test.web.client.match.ContentRequestMatchers$$Lambda$417/736868175 cannot be cast to org.springframework.test.web.servlet.ResultMatcher
+	at cn.burgeon.bos.test.HelloTests.getHello(HelloTests.java:38)
+

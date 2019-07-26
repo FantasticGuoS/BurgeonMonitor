@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>burgeon-noties</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="keyword1,keyword2,keyword3">
+<meta name="description" content="this is my page">
+
+<!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+</head>
+
+<body style="font-size: 16px; font-family: 微软雅黑;">
+	各位好
+	<br>
+	<p>
+		&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green; font-weight: bold;">当前伯俊BOS系统（<a
+			th:href="${serverURL}"><span th:text="${serverURL}"></span></a>）已恢复正常
+		</span>，以下为服务器响应内容：
+	</p>
+	<table
+		style="margin-left: 30px; border-top:1px #000000 solid; border-bottom:1px #000000 solid;">
+		<tr style="background: #DEE1E6; height: 36px;">
+			<td style="width:120px;text-align:right">用户邮箱：</td>
+			<td style="width:360px;text-align:left" th:text="${email}"></td>
+		</tr>
+		<tr style="height: 36px;">
+			<td style="width:120px;text-align:right">用户名：</td>
+			<td style="width:360px;text-align:left" th:text="${userName}"></td>
+		</tr>
+		<tr style="background: #DEE1E6; height: 36px;">
+			<td style="width:120px;text-align:right">服务器时间：</td>
+			<td style="width:360px;text-align:left" th:text="${serverTime}"></td>
+		</tr>
+		<tr style="height: 36px;">
+			<td style="width:120px;text-align:right">信息：</td>
+			<td style="width:360px;text-align:left" th:text="${message}"></td>
+		</tr>
+		<tr style="background: #DEE1E6; height: 36px;">
+			<td style="width:120px;text-align:right">响应时间：</td>
+			<td style="width:360px;text-align:left" th:text="${responseTime}"></td>
+		</tr>
+	</table>
+	<br>&nbsp;&nbsp;&nbsp;&nbsp;您可以对上面地址进行访问，如图所示
+	<br> &nbsp;&nbsp;&nbsp;&nbsp;
+	<img alt="BOS-Services" src="cid:img-normal">
+	<br>
+	<br> &nbsp;&nbsp;&nbsp;&nbsp;
+	<span style="font-weight: bold;">有任何问题请及时联系伯俊相关技术人员</span>
+	<br><br>
+</body>
+</html>

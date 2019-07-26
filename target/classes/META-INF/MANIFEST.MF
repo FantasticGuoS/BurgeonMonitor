@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: BurgeonMonitor-project
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: Charles
+Implementation-Vendor-Id: cn.burgeon.bos
+Build-Jdk: 1.8.0_112
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/BurgeonMonitor
+Created-By: Maven Integration for Eclipse
+
