@@ -2,10 +2,11 @@ package cn.burgeon.bos.task;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.InetAddress;
@@ -23,7 +24,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-import org.springframework.util.ResourceUtils;
 import org.thymeleaf.context.Context;
 
 import com.alibaba.fastjson.JSONObject;
@@ -104,15 +104,40 @@ public class NoticeTask {
 			context.setVariable("responseTime", resp.getString("responseTime"));
 
 			Map<String, File> maps = new HashMap<String, File>();
-			File file = ResourceUtils.getFile("classpath:image/BOS-Service.png");
+			// File file =
+			// ResourceUtils.getFile("classpath:image/BOS-Service.png");
+			String dir = System.getProperty("user.dir");
+			InputStream inputStream = NoticeTask.class.getClassLoader()
+					.getResourceAsStream("classpath:image/BOS-Service.png");
+			File file = writeFileByInputStream(dir + "BOS-Service.png", inputStream);
 			maps.put("img-warn", file);
 
 			mailUtil.sendTemplateMail(from, fromName, tosTo, ccsTo, "【伯俊警告】当前BOS系统处于异常状态", "burgeon-noties-warn.html",
 					context, maps);
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			log.error(e.getMessage(), e);
 		}
+	}
+
+	private File writeFileByInputStream(String fileName, InputStream in) {
+		try {
+			File destFile = new File(fileName);
+			OutputStream out = new FileOutputStream(destFile);
+			byte[] cache = new byte[1024];
+			int nRead = 0;
+			while ((nRead = in.read(cache)) != -1) {
+				out.write(cache, 0, nRead);
+				out.flush();
+			}
+			out.close();
+			in.close();
+			return destFile;
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			log.error(e.getMessage(), e);
+		}
+		return null;
 	}
 
 	private void sendNormalEmail(JSONObject resp) {
@@ -129,12 +154,17 @@ public class NoticeTask {
 			context.setVariable("responseTime", resp.getString("responseTime"));
 
 			Map<String, File> maps = new HashMap<String, File>();
-			File file = ResourceUtils.getFile("classpath:image/BOS-Login.png");
+			// File file =
+			// ResourceUtils.getFile("classpath:image/BOS-Login.png");
+			String dir = System.getProperty("user.dir");
+			InputStream inputStream = NoticeTask.class.getClassLoader()
+					.getResourceAsStream("classpath:image/BOS-Login.png");
+			File file = writeFileByInputStream(dir + "BOS-Login.png", inputStream);
 			maps.put("img-normal", file);
 
 			mailUtil.sendTemplateMail(from, fromName, tosTo, ccsTo, "【伯俊通知】当前BOS系统已恢复", "burgeon-noties-normal.html",
 					context, maps);
-		} catch (FileNotFoundException e) {
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			log.error(e.getMessage(), e);
 		}
